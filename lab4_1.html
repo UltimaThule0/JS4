@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Редин Максим ПИ320</title> 
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+	<script src="jquery-ui.js"></script>
+	<style>
+		body {
+			background-color: #ffbebe;
+		}
+		#buy {
+			background-color: aliceblue;
+			border: 5px solid aliceblue ;
+			border-radius: 6px;
+			margin: 10px;
+			padding: 8px;
+			color: red;
+			font-weight: bold;
+			font-size: large;
+		}
+		.ui-state-active {
+			background-color: red;
+			border: red;
+		}
+		.hasDatepicker {
+			display: inline-block;
+		}
+		input {
+			width: auto;
+			border-radius: 3px;
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+<h1>Вариант 5</h1>
+<h2>Список ж/д билетов</h2>
+<span id="accordion" >
+	<h2>Информация в дорогу - перед</h2> <div style="height: 600px;">
+	  <h3>Перед поездкой</h3>	
+Внимание! В связи с участившимися обращениями граждан по фактам приобретения железнодорожных билетов у посреднических организаций по завышенной стоимости и взимания платы без предоставления проездного документа настоятельно рекомендуем приобретать железнодорожные билеты через билетные кассы железнодорожных вокзалов, 
+официальный сайт или через мобильное приложение «РЖД Пассажирам», а также по телефону 8 (800) 250-15-20 (круглосуточно, звонок бесплатный).		
+<br>
+</div>
+	<h2>Информация в дорогу - во время</h2> 
+	<div style="height: 600px;">
+	  <h3>В поезде</h3>   
+	  Категории пассажирских поездов различаются в зависимости от следующих факторов: <br>
+	  <ul>
+		  <li>
+			Дальность следования
+		  </li>
+		  <li>
+			Скорость движения
+		  </li>
+		  <li>
+			Регулярность движения
+		  </li>
+		  <li>
+			Периодичность движения
+		  </li>
+		  <li>
+			Уровень предоставляемого сервиса
+		  </li>
+	  </ul>				
+<br>
+	</div> 
+  <h2>Информация в дорогу - после</h2> 
+	<div style="height: 600px;">
+	  <h3>После поездки</h3>   				
+
+Обратная связь: <br><br>
+	  8 800 775-00-00 – звонок бесплатный для всех регионов РФ<br>
+
+	  +7 (499) 605-20-00 – для звонков из других стран по всему миру, оплата в соответствии с тарифами вашего оператора связи<br>
+	  
+	  ticket@rzd.ru – для вопросов, связанных с электронными билетами<br>
+	  
+	</div> 
+	</span>
+  <br>
+<input type="button" value="Приобрести билет" id="buy" >
+
+	<div id="dialog" title="Форма оформления">
+        <h3>Личные данные:</h3>
+        <form>
+          Фамилия: <input type="text"><br><br>
+		 Имя: <input type="text"><br><br>
+     Отчество: <input type="text"><br><br>
+     Дата рождения:  <input type="text"  class="date"><br><br>
+    Город отправления: <input type="text"  class="city"><br><br>
+	Город прибытия: <input type="text"  class="city"><br><br>
+	Отправление: <span id="dateStart"></span>
+	Прибытие: <span id="dateEnd"></span><br><br>
+	Количество дней: <span id="dayCount"></span><br><br>
+		Количество багажа (кг): <p style="display: inline;" id="sliderValue"></p>
+    <br><br>
+    <div class="slider" style="width: 100%;"></div> <br>
+    Промо-код: <input type="text" title="Следите за нашими сезонными скидками"><br><br>
+          <label>Стоимость: </label><span id="stoim"></span> руб  <br><br>
+        </form>
+        <input type="button" class="kup" value="Купить">
+      </div>
+	  <div class="pp" title="Оформить покупку?">Совершая покупаку, Вы подтверждаете согласие с условиями нашего договора-оферты</div>
+	  <div class="da" title="Покупка ЖД билета совершена">Благодарим за покупку! Хорошей поездки!</div>
+<script type="text/javascript">
+    $(function(){
+		$("#accordion" ).accordion({  collapsible: true });
+		$('#dialog').dialog({ autoOpen: false, width: 800 });
+		$.datepicker.regional['ru'] = {
+	closeText: 'Закрыть',
+	prevText: 'Предыдущий',
+	nextText: 'Следующий',
+	currentText: 'Сегодня',
+	monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+	monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+	dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+	dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+	dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+	weekHeader: 'Не',
+	dateFormat: 'dd.mm.yy',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''
+};
+$.datepicker.setDefaults($.datepicker.regional['ru']);
+    $('#dateStart, #dateEnd').datepicker({
+        minDate: "d",
+        onSelect: function(date, datepicker) {
+            if (datepicker.id == "dateStart") {
+                $('#dateEnd').datepicker("setDate", date)
+                    .datepicker("enable").datepicker("option", "minDate", date)
+            }
+    
+            if (!$('#dateEnd').datepicker("isDisabled")) {
+                var startDate = $('#dateStart').datepicker("getDate");
+                var endDate = $('#dateEnd').datepicker("getDate");
+                var diff = endDate.getDate() - startDate.getDate();
+                $('#dayCount').text(diff).parent().show();
+            }
+        }
+    }).filter("#dateEnd").datepicker("disable");
+
+		  $(".date").datepicker({ });
+		$("#buy").click(function(){ 
+        $( "#dialog" ).dialog('open'); 
+      })
+	  var city = ["Москва", "Сочи", "Калининград", "Санкт-Петербург", "Уфа", "Казань", "Краснодар", "Хабаровск"]; 
+	  $(".city" ).click(function(){
+		$(".city").autocomplete({ source: city });  
+	}); 
+	$('.slider').slider({
+		    min: 0,
+	    	max: 30,
+        change: function (event, ui){
+            var val = $('.slider').slider('value');
+            $('#sliderValue').html(val);
+            var k = $('#sliderValue').html();
+            var stoim = 2500*(1+k/10);
+            document.getElementById('stoim').innerHTML = Math.floor(stoim);
+        }
+    });
+  $( function() {
+    $( document ).tooltip();
+  } );
+  $(".kup" ).click(function(){
+		$('.pp').dialog('open'); })
+	$('.pp').dialog({ autoOpen: false, width: 400, buttons:{
+        "Да!": function(){ $( ".da" ).dialog('open'),$('.pp').dialog('close'), 	$('#dialog').dialog('close');   },
+        "Нет": function(){$('.pp').dialog('close'), 	$('#dialog').dialog('close'); }
+    }})
+	$( ".da" ).dialog({autoOpen: false, width: 400}); 
+	})
+
+	</script>
+</body>
+</html>
